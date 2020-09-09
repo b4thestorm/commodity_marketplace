@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import (AbstractBaseUser)
 
 # Create your models here.
 class Bids(models.Model):
@@ -13,3 +14,11 @@ class Bids(models.Model):
 
     def __str__(self):
       return self.amount
+
+
+class User(AbstractBaseUser):
+  USER_TYPE_CHOICES = (
+      (1, 'seller'),
+      (2, 'buyer'),
+    )
+  user_type = models.PositiveSmallIntegerField(choices=USER_TYPE_CHOICES)
