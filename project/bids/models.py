@@ -1,11 +1,14 @@
 from django.db import models
 from django.contrib.auth.models import (AbstractBaseUser)
+from django.contrib.auth.models import (User)
 
 # Create your models here.
 class Bids(models.Model):
     amount = models.DecimalField(max_digits=5, decimal_places=2)
     quantity = models.IntegerField()
     confirm = models.BooleanField()
+    seller = models.ForeignKey(User, related_name="seller", on_delete=models.CASCADE, default=None)
+    buyer = models.ForeignKey(User, related_name="buyer",   on_delete=models.CASCADE, default=None)
 
     class Meta:
       verbose_name = 'bid'
